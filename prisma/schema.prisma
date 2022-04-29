@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// A club, honor, society, organization, etc. to be displayed
+model Org {
+  id           Int        @id @default(autoincrement())
+  type         OrgType
+  picture      String // link to image
+  name         String
+  hook         String
+  description  String
+  meetDay      String // tuesdays, first/second monday, etc.
+  meetFreq     String // weekly, biweekly, monthly, bimonthly
+  meetLocation String
+  links        String[]
+  email        String // club email
+  sponsors     Person[]
+  members      Int // estimate
+  categories   Category[]
+}
+
+model Person {
+  id    Int    @id @default(autoincrement())
+  role  String // student, teacher, admin
+  name  String
+  email String
+  orgs  Org[] // teacher sponsor and student leader
+}
+
+// club categories
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String
+  color String
+  Org   Org?   @relation(fields: [orgId], references: [id])
+  orgId Int?
+}
+
+// Roles should rarely/never change
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+// types should rarely/never change
+enum OrgType {
+  CLUB
+  HONOR_SOCIETY
+}
