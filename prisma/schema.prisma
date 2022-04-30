@@ -20,10 +20,10 @@ model Org {
   description  String
   meetDay      String // tuesdays, first/second monday, etc.
   meetFreq     String // weekly, biweekly, monthly, bimonthly
-  meetLocation String
+  meetLocation String // room 604, media center, gym
   links        String[]
   email        String // club email
-  sponsors     Person[]
+  sponsors     Person[] // includes teacher sponsor and student leaders
   members      Int // estimate
   categories   Category[]
 }
