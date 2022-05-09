@@ -1,9 +1,20 @@
+import { Org } from '@prisma/client'
 import React from 'react'
 import Card from './card'
 
-export default function CardList({ orgs, searchQuery, searchTags }) {
+interface CardListProps {
+    orgs: Org[]
+    searchQuery: string
+    searchTags: string[]
+}
+
+export default function CardList({
+    orgs,
+    searchQuery,
+    searchTags,
+}: CardListProps) {
     return (
-        <div>
+        <div className="space-y-4">
             {orgs.map((org) => (
                 <Card key={org.id} org={org} />
             ))}

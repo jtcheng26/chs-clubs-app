@@ -1,4 +1,4 @@
-import { OrgType } from '@prisma/client'
+import { OrgType, Org } from '@prisma/client'
 import { useState } from 'react'
 import CardList from '../components/home/cardList'
 import Filter from '../components/home/filter'
@@ -9,7 +9,11 @@ import Page from '../components/templates/layouts/page'
 import { Pages } from '../constants/pages'
 // import prismaClient from '../lib/prisma'
 
-export default function Home({ orgs }) {
+interface HomeProps {
+    orgs: Org[]
+}
+
+export default function Home({ orgs }: HomeProps) {
     const [searchQuery, setSearchQuery] = useState('')
     const [searchTags, setSearchTags] = useState([])
     return (
@@ -46,7 +50,7 @@ export async function getServerSideProps() {
             type: OrgType.CLUB,
             picture: '/images/logo.png',
             name: 'Org name',
-            hook: 'Org hook',
+            hook: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             description: 'Org description',
             meetDay: 'Monday',
             meetFreq: 'Weekly',
