@@ -10,20 +10,25 @@ interface CardProps {
 
 export default function Card({ org }: CardProps) {
     return (
-        <div className="bg-white p-4 shadow-md rounded-lg flex flex-row space-x-4">
+        <div className="bg-white p-4 shadow-md rounded-lg flex flex-row space-x-4 h-48 overflow-hidden">
             <div className="flex flex-col space-y-2">
                 <Image
                     src={org.picture}
-                    width={50}
-                    height={50}
+                    width={70}
+                    height={70}
                     objectFit="contain"
                     alt={org.name + ' logo'}
                 />
                 Details
             </div>
             <div className="flex flex-col">
-                <Title>{org.name}</Title>
-                <Description>{org.hook}</Description>
+                <div className="h-30 overflow-hidden">
+                    <Title>{org.name}</Title>
+                    <Description>
+                        {org.hook.substring(0, Math.min(org.hook.length, 280)) +
+                            '...'}
+                    </Description>
+                </div>
                 <div className="flex-grow" />
                 Tags
             </div>
