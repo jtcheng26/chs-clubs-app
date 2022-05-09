@@ -1,3 +1,4 @@
+import { OrgType } from '@prisma/client'
 import { useState } from 'react'
 import CardList from '../components/home/cardList'
 import Filter from '../components/home/filter'
@@ -6,7 +7,7 @@ import PageHeader from '../components/templates/headers/pageHeader'
 import NavBar from '../components/templates/layouts/navbar'
 import Page from '../components/templates/layouts/page'
 import { Pages } from '../constants/pages'
-import prismaClient from '../lib/prisma'
+// import prismaClient from '../lib/prisma'
 
 export default function Home({ orgs }) {
     const [searchQuery, setSearchQuery] = useState('')
@@ -33,12 +34,74 @@ export default function Home({ orgs }) {
 }
 
 export async function getServerSideProps() {
-    const orgs = await prismaClient.org.findMany({
-        include: {
-            sponsors: true,
-            categories: true,
+    // const orgs = await prismaClient.org.findMany({
+    //     include: {
+    //         sponsors: true,
+    //         categories: true,
+    //     },
+    // })
+    const orgs = [
+        {
+            id: 1,
+            type: OrgType.CLUB,
+            picture: '/images/logo.png',
+            name: 'Org name',
+            hook: 'Org hook',
+            description: 'Org description',
+            meetDay: 'Monday',
+            meetFreq: 'Weekly',
+            meetLocation: 'Room 604',
+            links: ['/', '/help'],
+            email: 'abcdefg@gmail.com',
+            sponsors: [
+                {
+                    id: 2,
+                    role: 'Teacher',
+                    name: 'Teacher #1',
+                    email: 'tecaher@gmail.com',
+                    orgs: [],
+                },
+            ],
+            members: 10,
+            categories: [
+                {
+                    id: 3,
+                    name: 'Category',
+                    color: '#26f',
+                },
+            ],
         },
-    })
+        {
+            id: 5,
+            type: OrgType.CLUB,
+            picture: '/images/logo.png',
+            name: 'Org name 2',
+            hook: 'Org hook',
+            description: 'Org description',
+            meetDay: 'Monday',
+            meetFreq: 'Weekly',
+            meetLocation: 'Room 604',
+            links: ['/', '/help'],
+            email: 'abcdefg@gmail.com',
+            sponsors: [
+                {
+                    id: 6,
+                    role: 'Teacher',
+                    name: 'Teacher #1',
+                    email: 'tecaher@gmail.com',
+                    orgs: [],
+                },
+            ],
+            members: 10,
+            categories: [
+                {
+                    id: 7,
+                    name: 'Category',
+                    color: '#26f',
+                },
+            ],
+        },
+    ]
     return {
         props: { orgs },
     }
