@@ -18,10 +18,10 @@ export default function Category({
     const defaultColor = 'bg-gray-500'
     function changeColor() {
         if (selected) {
-            document.getElementById("ID").style.backgroundColor=color;
+            document.getElementById("ID")!.style.backgroundColor=color;
             selected = false;
         } else {
-            document.getElementById("ID").style.backgroundColor=defaultColor;
+            document.getElementById("ID")!.style.backgroundColor=defaultColor;
             selected = true;
         }
     }
