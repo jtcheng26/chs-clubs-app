@@ -7,6 +7,8 @@ interface CategoryProps {
     onClick: () => void
 }
 
+
+
 export default function Category({
     name,
     color,
@@ -14,5 +16,14 @@ export default function Category({
     selected,
 }: CategoryProps) {
     const defaultColor = 'bg-gray-500'
-    return <div>Category</div>
+    function changeColor() {
+        if (selected) {
+            document.getElementById("ID").style.backgroundColor=color;
+            selected = false;
+        } else {
+            document.getElementById("ID").style.backgroundColor=defaultColor;
+            selected = true;
+        }
+    }
+    return <button id="ID" onClick={changeColor}>Category</button>
 }
