@@ -22,5 +22,5 @@ export default function Category({
     } else {
         className = defaultColor
     }
-    return <button>Category</button>
+    return <button className={className}>Category</button>
 }
