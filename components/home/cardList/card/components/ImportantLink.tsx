@@ -6,5 +6,5 @@ interface ImportantLinkProps {
 }
 
 export default function ImportantLink({ href, children }: ImportantLinkProps) {
-    return <div>ImportantLink</div>
+    return <a href={href}>children</a>
 }
