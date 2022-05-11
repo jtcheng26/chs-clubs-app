@@ -6,5 +6,5 @@ interface ImportantLinkProps {
 }
 
 export default function ImportantLink({ href, children }: ImportantLinkProps) {
-    return <a href={href}>children</a>
+    return <a className = "text-[#C34700] hover:text-[#FF5D00]" href={href}>{children}</a>
 }
