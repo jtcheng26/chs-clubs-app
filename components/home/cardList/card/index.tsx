@@ -2,6 +2,7 @@ import { Org } from '@prisma/client'
 import Image from 'next/image'
 import React from 'react'
 import Description from './components/Description'
+import ImportantLink from './components/ImportantLink'
 import Title from './components/Title'
 
 interface CardProps {
