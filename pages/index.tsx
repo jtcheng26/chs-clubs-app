@@ -18,21 +18,23 @@ export default function Home({ orgs }: HomeProps) {
     const [searchTags, setSearchTags] = useState([])
     return (
         <>
-            <div className="sticky top-0 left-0 right-0">
+            <div className="fixed top-0 left-0 right-0">
                 <NavBar currentPage={Pages.HOME} />
             </div>
-            <Page>
-                <PageHeader>All Clubs and Organizations</PageHeader>
-                <div>
-                    <SearchBar setSearchQuery={setSearchQuery} />
-                    <Filter setSearchTags={setSearchTags} />
-                </div>
-                <CardList
-                    orgs={orgs}
-                    searchQuery={searchQuery}
-                    searchTags={searchTags}
-                />
-            </Page>
+            <div className="mt-20">
+                <Page>
+                    <PageHeader>All Clubs and Organizations</PageHeader>
+                    <div>
+                        <SearchBar setSearchQuery={setSearchQuery} />
+                        <Filter setSearchTags={setSearchTags} />
+                    </div>
+                    <CardList
+                        orgs={orgs}
+                        searchQuery={searchQuery}
+                        searchTags={searchTags}
+                    />
+                </Page>
+            </div>
         </>
     )
 }

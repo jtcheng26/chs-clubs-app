@@ -1,10 +1,15 @@
+/* Adapted from https://flowbite.com/docs/components/navbar/ */
 import React, { useState } from 'react'
 import { Pages } from '../../../../constants/pages'
 import MenuButton from './components/menuButton'
 import NavLink from './components/navLink'
 import NavTitle from './components/navTitle'
 
-export default function NavBar({ currentPage }) {
+interface NavBarProps {
+    currentPage: Pages
+}
+
+export default function NavBar({ currentPage }: NavBarProps) {
     const [menu, setMenu] = useState<boolean>(false)
     const title = 'Centennial HS Clubs and Organizations'
 
@@ -18,7 +23,7 @@ export default function NavBar({ currentPage }) {
                 <MenuButton onClick={toggleMenu} />
                 <div
                     className={`${
-                        menu ? 'hidden' : ''
+                        !menu ? 'hidden sticky' : ''
                     } w-full md:block md:w-auto`}
                 >
                     <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium">
