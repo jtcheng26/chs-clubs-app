@@ -18,7 +18,7 @@ export default function Home({ orgs }: HomeProps) {
     const [searchTags, setSearchTags] = useState([])
     return (
         <>
-            <div className="fixed top-0 left-0 right-0">
+            <div className="sticky top-0 left-0 right-0">
                 <NavBar currentPage={Pages.HOME} />
             </div>
             <div className="mt-24">
