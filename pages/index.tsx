@@ -21,7 +21,7 @@ export default function Home({ orgs }: HomeProps) {
             <div className="fixed top-0 left-0 right-0">
                 <NavBar currentPage={Pages.HOME} />
             </div>
-            <div className="mt-20">
+            <div className="mt-24">
                 <Page>
                     <PageHeader>All Clubs and Organizations</PageHeader>
                     <div>
@@ -56,7 +56,7 @@ export async function getServerSideProps() {
             description: 'Org description',
             meetDay: 'Monday',
             meetFreq: 'Weekly',
-            meetLocation: 'Room 604',
+            meetLocation: 'Virtual',
             links: ['/', '/help'],
             email: 'abcdefg@gmail.com',
             sponsors: [
@@ -73,7 +73,12 @@ export async function getServerSideProps() {
                 {
                     id: 3,
                     name: 'Category',
-                    color: '#26f',
+                    color: 'bg-blue-400',
+                },
+                {
+                    id: 4,
+                    name: 'Category 2',
+                    color: 'bg-red-400',
                 },
             ],
         },
@@ -103,7 +108,7 @@ export async function getServerSideProps() {
                 {
                     id: 7,
                     name: 'Category',
-                    color: '#26f',
+                    color: 'bg-blue-400',
                 },
             ],
         },

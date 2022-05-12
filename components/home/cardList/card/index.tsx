@@ -45,7 +45,7 @@ export default function Card({ org }: CardProps) {
                     <Description>{org.hook}</Description>
                 </div>
                 <div className="flex-grow" />
-                <div className="flex flex-row">
+                <div className="flex flex-row space-x-2">
                     {org.categories.map((category) => (
                         <Category
                             key={category.id}

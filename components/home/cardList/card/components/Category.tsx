@@ -7,8 +7,6 @@ interface CategoryProps {
     onClick: () => void
 }
 
-
-
 export default function Category({
     name,
     color,
@@ -22,5 +20,15 @@ export default function Category({
     } else {
         className = defaultColor
     }
-    return <button className={className}>Category</button>
+    return (
+        <button
+            className={
+                className +
+                ' py-1 px-3 text-sm rounded-full text-white hover:bg-opacity-80 font-medium'
+            }
+            onClick={onClick}
+        >
+            {name}
+        </button>
+    )
 }
