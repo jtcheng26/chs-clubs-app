@@ -1,10 +1,11 @@
 import React from 'react'
+import Link from 'react'
 
 interface ContactProps {
-    href: string
+    email: string
     children: React.ReactNode
 }
 
-export default function Contact({ href, children }: ContactProps) {
-    return <a className="text-black" href={href}>{children}</a>
+export default function Contact({ email, children }: ContactProps) {
+    return <a className="text-black" href={'mailto:${this.props.email}'}>{children}</a>
 }

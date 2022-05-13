@@ -5,6 +5,8 @@ import Category from './components/Category'
 import Description from './components/Description'
 import IconLabel from './components/IconLabel'
 import Title from './components/Title'
+import Contact from './components/Contact'
+import ContactLabel from './components/ContactLabel'
 import CalendarSolid from '@heroicons/react/solid/CalendarIcon'
 import LocationMarkerSolid from '@heroicons/react/solid/LocationMarkerIcon'
 import UsersSolid from '@heroicons/react/solid/UsersIcon'
@@ -42,7 +44,6 @@ export default function Card({ org }: CardProps) {
             <div className="flex flex-col w-full">
                 <div className="h-30 overflow-hidden">
                     <Title>{org.name}</Title>
-                    <ContactLabel label={"teacher"}></ContactLabel>
                     <Description>{org.hook}</Description>
                 </div>
                 <div className="flex-grow" />
