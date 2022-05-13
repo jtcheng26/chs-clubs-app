@@ -42,9 +42,11 @@ export default function Card({ org }: CardProps) {
             <div className="flex flex-col w-full">
                 <div className="h-30 overflow-hidden">
                     <Title>{org.name}</Title>
+                    <ContactLabel label={"teacher"}></ContactLabel>
                     <Description>{org.hook}</Description>
                 </div>
                 <div className="flex-grow" />
+                
                 <div className="flex flex-row space-x-2">
                     {org.categories.map((category) => (
                         <Category
@@ -58,6 +60,7 @@ export default function Card({ org }: CardProps) {
                         />
                     ))}
                 </div>
+
             </div>
         </div>
     )
