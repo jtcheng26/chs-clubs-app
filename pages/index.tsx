@@ -10,18 +10,18 @@ import { Pages } from '../constants/pages'
 import prismaClient from '../lib/prisma'
 import { Prisma } from '@prisma/client'
 
-const userWithCategories = Prisma.validator<Prisma.OrgArgs>()({
-    include: { categories: true },
+const userWithRelations = Prisma.validator<Prisma.OrgArgs>()({
+    include: { categories: true, sponsors: true },
 })
-type OrgWithCategories = Prisma.OrgGetPayload<typeof userWithCategories>
+export type OrgWithAll = Prisma.OrgGetPayload<typeof userWithRelations>
 
 interface HomeProps {
-    orgs: Org[]
+    orgs: OrgWithAll[]
 }
 
 export default function Home({ orgs }: HomeProps) {
-    const [searchQuery, setSearchQuery] = useState('')
-    const [searchTags, setSearchTags] = useState(new Set([]))
+    const [searchQuery, setSearchQuery] = useState<string>('')
+    const [searchTags, setSearchTags] = useState<Set<number>>(new Set([]))
     return (
         <>
             <div className="fixed top-0 left-0 right-0">
@@ -31,8 +31,14 @@ export default function Home({ orgs }: HomeProps) {
                 <Page>
                     <PageHeader>All Clubs and Organizations</PageHeader>
                     <div>
-                        <SearchBar setSearchQuery={setSearchQuery} />
-                        <Filter setSearchTags={setSearchTags} />
+                        <SearchBar
+                            setSearchQuery={setSearchQuery}
+                            data={orgs}
+                        />
+                        <Filter
+                            setSearchTags={setSearchTags}
+                            searchTags={searchTags}
+                        />
                     </div>
                     <CardList
                         orgs={orgs}
@@ -46,13 +52,13 @@ export default function Home({ orgs }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-    // const orgs = await prismaClient.org.findMany({
-    //     include: {
-    //         sponsors: true,
-    //         categories: true,
-    //     },
-    // })
-    const orgs = [
+    const orgs = await prismaClient.org.findMany({
+        include: {
+            sponsors: true,
+            categories: true,
+        },
+    })
+    const orgs2 = [
         {
             id: 1,
             type: OrgType.CLUB,

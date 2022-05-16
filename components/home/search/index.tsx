@@ -1,16 +1,19 @@
 import React from 'react'
-import { Org } from '@prisma/client'
+import { OrgWithAll } from '../../../pages'
 
+interface SearchProps {
+    data: OrgWithAll[]
+    setSearchQuery: (s: string) => void
+}
 
-export default function Filter({ placeholder, setSearchTags }) {
+export default function Search({ data, setSearchQuery }: SearchProps) {
     return (
-    <div className="search">
-        <div className="searchInputs">
-            <input type="text" placeholder=" Search"/>
-            <div className="searchIcon"></div>
+        <div className="search">
+            <div className="searchInputs">
+                <input type="text" placeholder=" Search" />
+                <div className="searchIcon"></div>
+            </div>
+            <div className="dataResults"></div>
         </div>
-        <div className="dataResults"></div>
-    
-    </div>
     )
 }

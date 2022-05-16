@@ -13,19 +13,17 @@ export default function Category({
     onClick,
     selected,
 }: CategoryProps) {
-    const defaultColor = 'bg-gray-500'
-    let className = defaultColor
+    const defaultColor = '#444'
+    let bgColor = defaultColor
     if (selected) {
-        className = color
+        bgColor = color
     } else {
-        className = defaultColor
+        bgColor = defaultColor
     }
     return (
         <button
-            className={
-                className +
-                ' py-1 px-3 text-sm rounded-full text-white hover:bg-opacity-80 font-medium'
-            }
+            className="py-1 px-3 text-sm rounded-full text-white hover:opacity-70 font-medium"
+            style={{ backgroundColor: bgColor }}
             onClick={onClick}
         >
             {name}

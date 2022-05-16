@@ -7,5 +7,9 @@ interface ContactProps {
 }
 
 export default function Contact({ email, children }: ContactProps) {
-    return <a className="text-black" href={'mailto:${this.props.email}'}>{children}</a>
+    return (
+        <a className="text-black" href={'mailto:${this.props.email}'}>
+            {children}
+        </a>
+    )
 }

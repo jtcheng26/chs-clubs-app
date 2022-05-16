@@ -10,9 +10,10 @@ import ContactLabel from './components/ContactLabel'
 import CalendarSolid from '@heroicons/react/solid/CalendarIcon'
 import LocationMarkerSolid from '@heroicons/react/solid/LocationMarkerIcon'
 import UsersSolid from '@heroicons/react/solid/UsersIcon'
+import { OrgWithCategories } from '../../../../pages'
 
 interface CardProps {
-    org: Org
+    org: OrgWithCategories
 }
 
 export default function Card({ org }: CardProps) {
@@ -47,7 +48,7 @@ export default function Card({ org }: CardProps) {
                     <Description>{org.hook}</Description>
                 </div>
                 <div className="flex-grow" />
-                
+
                 <div className="flex flex-row space-x-2">
                     {org.categories.map((category) => (
                         <Category
@@ -61,7 +62,6 @@ export default function Card({ org }: CardProps) {
                         />
                     ))}
                 </div>
-
             </div>
         </div>
     )
