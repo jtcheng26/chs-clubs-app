@@ -22,7 +22,7 @@ export default function Category({
     }
     return (
         <button
-            className="py-1 px-3 text-sm rounded-full text-white hover:opacity-70 font-medium"
+            className="py-1 px-3 md:text-sm rounded-full text-white hover:opacity-70 font-medium"
             style={{ backgroundColor: bgColor }}
             onClick={onClick}
         >

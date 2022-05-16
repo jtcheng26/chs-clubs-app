@@ -12,6 +12,36 @@ const tags = [
         name: 'Category 2',
         color: '#f62',
     },
+    {
+        id: 3,
+        name: 'Category 1',
+        color: '#26f',
+    },
+    {
+        id: 4,
+        name: 'Category 2',
+        color: '#f62',
+    },
+    {
+        id: 5,
+        name: 'Category 1',
+        color: '#26f',
+    },
+    {
+        id: 6,
+        name: 'Category 2',
+        color: '#f62',
+    },
+    {
+        id: 7,
+        name: 'Category 1',
+        color: '#26f',
+    },
+    {
+        id: 8,
+        name: 'Category 2',
+        color: '#f62',
+    },
 ]
 
 interface FilterProps {
@@ -35,16 +65,20 @@ export default function Filter({ searchTags, setSearchTags }: FilterProps) {
         return searchTags.size == 0 || searchTags.has(id)
     }
     return (
-        <div>
-            {tags.map((tag) => (
-                <Category
-                    key={tag.id}
-                    color={tag.color}
-                    name={tag.name}
-                    onClick={toggleTag(tag.id)}
-                    selected={isActive(tag.id)}
-                />
-            ))}
+        <div className="flex flex-col space-y-2">
+            <span className="text-gray-500">Filter by category</span>
+            <div className="flex flex-row flex-wrap">
+                {tags.map((tag) => (
+                    <div className="pr-2 pb-2" key={tag.id}>
+                        <Category
+                            color={tag.color}
+                            name={tag.name}
+                            onClick={toggleTag(tag.id)}
+                            selected={isActive(tag.id)}
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

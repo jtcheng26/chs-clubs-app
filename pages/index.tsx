@@ -30,11 +30,8 @@ export default function Home({ orgs }: HomeProps) {
             <div className="mt-24">
                 <Page>
                     <PageHeader>All Clubs and Organizations</PageHeader>
-                    <div>
-                        <SearchBar
-                            setSearchQuery={setSearchQuery}
-                            data={orgs}
-                        />
+                    <div className="space-y-8">
+                        <SearchBar setSearchQuery={setSearchQuery} />
                         <Filter
                             setSearchTags={setSearchTags}
                             searchTags={searchTags}
@@ -118,9 +115,9 @@ export async function getServerSideProps() {
             members: 10,
             categories: [
                 {
-                    id: 3,
-                    name: 'Category',
-                    color: 'bg-blue-400',
+                    id: 1,
+                    name: 'Category 1',
+                    color: '#26f',
                 },
             ],
         },
