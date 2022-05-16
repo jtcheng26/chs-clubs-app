@@ -18,7 +18,7 @@ export default function NavBar({ currentPage }) {
                 <MenuButton onClick={toggleMenu} />
                 <div
                     className={`${
-                        menu ? 'hidden' : ''
+                        !menu ? 'hidden' : ''
                     } w-full md:block md:w-auto`}
                 >
                     <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-medium">
