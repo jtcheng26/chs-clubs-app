@@ -52,12 +52,12 @@ export default function Home({ orgs }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-    const orgs2 = await prismaClient.org.findMany({
-        include: {
-            sponsors: true,
-            categories: true,
-        },
-    })
+    // const orgs2 = await prismaClient.org.findMany({
+    //     include: {
+    //         sponsors: true,
+    //         categories: true,
+    //     },
+    // })
     const orgs = [
         {
             id: 1,
@@ -84,13 +84,13 @@ export async function getServerSideProps() {
             categories: [
                 {
                     id: 1,
-                    name: 'Category',
-                    color: 'bg-blue-400',
+                    name: 'Category 1',
+                    color: '#26f',
                 },
                 {
                     id: 2,
                     name: 'Category 2',
-                    color: 'bg-red-400',
+                    color: '#f62',
                 },
             ],
         },
