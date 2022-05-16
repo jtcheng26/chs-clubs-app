@@ -13,6 +13,7 @@ datasource db {
 // A club, honor, society, organization, etc. to be displayed
 model Org {
   id           Int        @id @default(autoincrement())
+  identifier   String    @unique // url-safe unique identifier (a-z, 0-9, -) only
   type         OrgType
   picture      String // link to image
   name         String

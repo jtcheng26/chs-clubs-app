@@ -8,7 +8,7 @@ import { Pages } from '../../../constants/pages'
 interface LayoutProps {
     page: Pages
     title: string
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 export default function Layout({ page, title, children }: LayoutProps) {
