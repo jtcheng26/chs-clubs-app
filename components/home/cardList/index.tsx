@@ -1,11 +1,12 @@
 import { Org } from '@prisma/client'
 import React from 'react'
 import Card from './card'
+import useTagFilter from './hooks/useTagFilter'
 
 interface CardListProps {
     orgs: Org[]
     searchQuery: string
-    searchTags: string[]
+    searchTags: Set<number>
 }
 
 export default function CardList({
@@ -13,9 +14,10 @@ export default function CardList({
     searchQuery,
     searchTags,
 }: CardListProps) {
+    const filteredOrgs = useTagFilter(orgs, searchTags)
     return (
         <div className="space-y-4">
-            {orgs.map((org) => (
+            {filteredOrgs.map((org) => (
                 <Card key={org.id} org={org} />
             ))}
         </div>

@@ -5,6 +5,6 @@ export default function useTagFilter(orgs: Org[], tags: Set<number>) {
     return orgs.filter((org) => {
         return org.categories.reduce((a, b) => {
             return a || tags.has(b.id)
-        }, false)
+        }, tags.size === 0)
     })
 }
