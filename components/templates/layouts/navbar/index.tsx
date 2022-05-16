@@ -4,7 +4,11 @@ import MenuButton from './components/menuButton'
 import NavLink from './components/navLink'
 import NavTitle from './components/navTitle'
 
-export default function NavBar({ currentPage }) {
+interface NavBarProps {
+    currentPage: Pages
+}
+
+export default function NavBar({ currentPage }: NavBarProps) {
     const [menu, setMenu] = useState<boolean>(false)
     const title = 'Centennial HS Clubs and Organizations'
 
