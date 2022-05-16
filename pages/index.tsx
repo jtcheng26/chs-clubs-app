@@ -1,14 +1,11 @@
-import { OrgType, Org } from '@prisma/client'
+import { OrgType } from '@prisma/client'
 import { useState } from 'react'
 import CardList from '../components/home/cardList'
 import Filter from '../components/home/filter'
 import SearchBar from '../components/home/search'
-import PageHeader from '../components/templates/headers/pageHeader'
-import NavBar from '../components/templates/layouts/navbar'
-import Page from '../components/templates/layouts/page'
 import { Pages } from '../constants/pages'
-import prismaClient from '../lib/prisma'
 import { Prisma } from '@prisma/client'
+import Layout from '../components/templates/layouts/layout'
 
 const userWithRelations = Prisma.validator<Prisma.OrgArgs>()({
     include: { categories: true, sponsors: true },
@@ -23,28 +20,17 @@ export default function Home({ orgs }: HomeProps) {
     const [searchQuery, setSearchQuery] = useState<string>('')
     const [searchTags, setSearchTags] = useState<Set<number>>(new Set([]))
     return (
-        <>
-            <div className="fixed top-0 left-0 right-0">
-                <NavBar currentPage={Pages.HOME} />
+        <Layout page={Pages.HOME} title="All Clubs and Organizations">
+            <div className="space-y-8">
+                <SearchBar setSearchQuery={setSearchQuery} />
+                <Filter setSearchTags={setSearchTags} searchTags={searchTags} />
             </div>
-            <div className="mt-24">
-                <Page>
-                    <PageHeader>All Clubs and Organizations</PageHeader>
-                    <div className="space-y-8">
-                        <SearchBar setSearchQuery={setSearchQuery} />
-                        <Filter
-                            setSearchTags={setSearchTags}
-                            searchTags={searchTags}
-                        />
-                    </div>
-                    <CardList
-                        orgs={orgs}
-                        searchQuery={searchQuery}
-                        searchTags={searchTags}
-                    />
-                </Page>
-            </div>
-        </>
+            <CardList
+                orgs={orgs}
+                searchQuery={searchQuery}
+                searchTags={searchTags}
+            />
+        </Layout>
     )
 }
 

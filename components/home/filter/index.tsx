@@ -66,7 +66,9 @@ export default function Filter({ searchTags, setSearchTags }: FilterProps) {
     }
     return (
         <div className="flex flex-col space-y-2">
-            <span className="text-gray-500">Filter by category</span>
+            <span className="text-gray-500 hidden md:block">
+                Filter by category
+            </span>
             <div className="flex flex-row flex-wrap">
                 {tags.map((tag) => (
                     <div className="pr-2 pb-2" key={tag.id}>

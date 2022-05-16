@@ -11,14 +11,20 @@ interface NavBarProps {
 export default function NavBar({ currentPage }: NavBarProps) {
     const [menu, setMenu] = useState<boolean>(false)
     const title = 'Centennial HS Clubs and Organizations'
+    const titleShort = 'Centennial HS Clubs'
 
     function toggleMenu() {
         setMenu(!menu)
     }
     return (
-        <nav className="bg-white border-gray-200 px-4 py-4 dark:bg-gray-800 shadow-md">
+        <nav className="bg-white border-gray-200 px-4 py-4 dark:bg-gray-800 shadow-md z-50">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <NavTitle imgSrc="/images/logo.png">{title}</NavTitle>
+                <span className="hidden md:block">
+                    <NavTitle imgSrc="/images/logo.png">{title}</NavTitle>
+                </span>
+                <span className="md:hidden">
+                    <NavTitle imgSrc="/images/logo.png">{titleShort}</NavTitle>
+                </span>
                 <MenuButton onClick={toggleMenu} />
                 <div
                     className={`${
