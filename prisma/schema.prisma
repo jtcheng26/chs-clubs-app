@@ -41,8 +41,7 @@ model Category {
   id    Int    @id @default(autoincrement())
   name  String
   color String
-  Org   Org?   @relation(fields: [orgId], references: [id])
-  orgId Int?
+  orgs  Org[]
 }
 
 // Roles should rarely/never change

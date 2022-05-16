@@ -7,7 +7,13 @@ import PageHeader from '../components/templates/headers/pageHeader'
 import NavBar from '../components/templates/layouts/navbar'
 import Page from '../components/templates/layouts/page'
 import { Pages } from '../constants/pages'
-// import prismaClient from '../lib/prisma'
+import prismaClient from '../lib/prisma'
+import { Prisma } from '@prisma/client'
+
+const userWithCategories = Prisma.validator<Prisma.OrgArgs>()({
+    include: { categories: true },
+})
+type OrgWithCategories = Prisma.OrgGetPayload<typeof userWithCategories>
 
 interface HomeProps {
     orgs: Org[]
@@ -15,10 +21,10 @@ interface HomeProps {
 
 export default function Home({ orgs }: HomeProps) {
     const [searchQuery, setSearchQuery] = useState('')
-    const [searchTags, setSearchTags] = useState([])
+    const [searchTags, setSearchTags] = useState(new Set([]))
     return (
         <>
-            <div className="sticky top-0 left-0 right-0">
+            <div className="fixed top-0 left-0 right-0">
                 <NavBar currentPage={Pages.HOME} />
             </div>
             <div className="mt-24">
@@ -71,12 +77,12 @@ export async function getServerSideProps() {
             members: 10,
             categories: [
                 {
-                    id: 3,
+                    id: 1,
                     name: 'Category',
                     color: 'bg-blue-400',
                 },
                 {
-                    id: 4,
+                    id: 2,
                     name: 'Category 2',
                     color: 'bg-red-400',
                 },
@@ -106,7 +112,7 @@ export async function getServerSideProps() {
             members: 10,
             categories: [
                 {
-                    id: 7,
+                    id: 3,
                     name: 'Category',
                     color: 'bg-blue-400',
                 },
