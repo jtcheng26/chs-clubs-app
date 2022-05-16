@@ -40,6 +40,7 @@ export default function Home({ orgs, categories }: HomeProps) {
     )
 }
 
+
 export async function getServerSideProps() {
     const orgs = await prismaClient.org.findMany({
         include: {
@@ -90,6 +91,7 @@ export async function getServerSideProps() {
             color: '#f62',
         },
     ]
+    
     const orgs2 = [
         {
             id: 1,
