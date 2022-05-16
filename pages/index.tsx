@@ -52,13 +52,13 @@ export default function Home({ orgs }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-    const orgs = await prismaClient.org.findMany({
+    const orgs2 = await prismaClient.org.findMany({
         include: {
             sponsors: true,
             categories: true,
         },
     })
-    const orgs2 = [
+    const orgs = [
         {
             id: 1,
             type: OrgType.CLUB,
