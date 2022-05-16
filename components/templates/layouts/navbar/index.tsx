@@ -16,6 +16,7 @@ export default function NavBar({ currentPage }: NavBarProps) {
     function toggleMenu() {
         setMenu(!menu)
     }
+
     return (
         <nav className="bg-white border-gray-200 px-4 py-4 dark:bg-gray-800 shadow-md z-50">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
