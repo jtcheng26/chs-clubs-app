@@ -1,5 +1,5 @@
 import React from 'react'
-import { Org } from '@prisma/client'
+import { OrgWithAll } from '../../../../pages'
 import Image from 'next/image'
 import Category from '../card/components/Category'
 import Description from '../card/components/Description'
@@ -13,10 +13,9 @@ import LocationMarkerSolid from '@heroicons/react/solid/LocationMarkerIcon'
 import UsersSolid from '@heroicons/react/solid/UsersIcon'
 import LinkSolid from '@heroicons/react/solid/LinkIcon'
 import MailSolid from '@heroicons/react/solid/MailIcon'
-import 
 
 interface ExpandedCardProps {
-    org: Org
+    org: OrgWithAll
 }
 
 export default function ExpandedCard({ org }: ExpandedCardProps) {
@@ -71,7 +70,11 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
                     width={20}
                     className="text-gray-600"
                 />
-                <ImportantLink>{org.links}</ImportantLink>
+                {org.links.map((links) => (
+                    <ImportantLink
+                        href={links}
+                    >{links}</ImportantLink>
+                ))}
             </div>
             <div className="contactSection flex-col">
                 <MailSolid
@@ -79,13 +82,16 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
                     className="text-gray-600"
                 />
                 <div>
-                    <ContactLabel>
-                        {org.sponsors.name}
-                    </ContactLabel>
-                    <Contact
-                        email={org.sponsors.email}
-                        children={org.sponsors.email}
-                    />
+                    {org.sponsors.map((sponsor) => (<>
+                        <ContactLabel>
+                            {sponsor.name}
+                        </ContactLabel>
+                        <Contact
+                            email={sponsor.email}
+                        >
+                            {sponsor.email}
+                        </Contact></>
+                    ))}
                 </div>
             </div>
             <div className="numMembers">
