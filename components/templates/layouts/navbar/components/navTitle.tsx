@@ -1,7 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 
-export default function NavTitle({ imgSrc, children }) {
+interface NavTitleProps {
+    imgSrc: string
+    children?: React.ReactNode
+}
+
+export default function NavTitle({ imgSrc, children }: NavTitleProps) {
     return (
         <a className="flex items-center">
             <div className="mr-2 sm:mr-3 h-6 w-8 sm:h-9 sm:w-12 relative">

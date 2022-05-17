@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext } from 'next'
 import React from 'react'
 import { OrgWithAll } from '..'
+import ExpandedCard from '../../components/home/cardList/expandedCard'
 import Layout from '../../components/templates/layouts/layout'
 import { Pages } from '../../constants/pages'
 import prismaClient from '../../lib/prisma'
@@ -13,7 +14,7 @@ interface ClubPageProps {
 export default function ClubPage({ org }: ClubPageProps) {
     return org ? (
         <Layout page={Pages.HOME} title={org.name}>
-            content
+            {/* <ExpandedCard org={org} /> */}
         </Layout>
     ) : (
         <PageNotFound />
