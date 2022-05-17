@@ -19,7 +19,6 @@ interface ExpandedCardProps {
 }
 
 export default function ExpandedCard({ org }: ExpandedCardProps) {
-
     return (
         <div className="expandedCard display-flex justify-start flex-column">
             <div className="titleSection display-flex justify-start flex-row">
@@ -36,16 +35,10 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
             </div>
             <div className="genInfo flex-col">
                 <IconLabel label={org.meetFreq}>
-                    <CalendarSolid
-                        width={30}
-                        className="text-gray-600"
-                    />
+                    <CalendarSolid width={30} className="text-gray-600" />
                 </IconLabel>
                 <IconLabel label={org.meetLocation}>
-                    <LocationMarkerSolid
-                        width={30}
-                        className="text-gray-600"
-                    />
+                    <LocationMarkerSolid width={30} className="text-gray-600" />
                 </IconLabel>
             </div>
             <div className="tags display-flex justify-start flex flex-row space-x-2">
@@ -66,31 +59,23 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
                 <Description>{org.hook}</Description>
             </div>
             <div className="importantLinksSection flex-col">
-                <LinkSolid
-                    width={20}
-                    className="text-gray-600"
-                />
-                {org.links.map((links) => (
-                    <ImportantLink
-                        href={links}
-                    >{links}</ImportantLink>
+                <LinkSolid width={20} className="text-gray-600" />
+                {org.links.map((link) => (
+                    <ImportantLink href={link} key={link}>
+                        {link}
+                    </ImportantLink>
                 ))}
             </div>
             <div className="contactSection flex-col">
-                <MailSolid
-                    width={20}
-                    className="text-gray-600"
-                />
+                <MailSolid width={20} className="text-gray-600" />
                 <div>
-                    {org.sponsors.map((sponsor) => (<>
-                        <ContactLabel>
-                            {sponsor.name}
-                        </ContactLabel>
-                        <Contact
-                            email={sponsor.email}
-                        >
-                            {sponsor.email}
-                        </Contact></>
+                    {org.sponsors.map((sponsor) => (
+                        <>
+                            <ContactLabel>{sponsor.name}</ContactLabel>
+                            <Contact email={sponsor.email}>
+                                {sponsor.email}
+                            </Contact>
+                        </>
                     ))}
                 </div>
             </div>
