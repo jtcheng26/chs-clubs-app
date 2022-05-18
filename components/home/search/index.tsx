@@ -1,5 +1,6 @@
 /* Adapted from https://flowbite.com/docs/forms/search-input */
-import React, { useState } from 'react'
+import { debounce } from 'lodash'
+import React, { useMemo, useState } from 'react'
 
 interface SearchProps {
     setSearchQuery: (s: string) => void
@@ -8,14 +9,22 @@ interface SearchProps {
 export default function Search({ setSearchQuery }: SearchProps) {
     const [query, setQuery] = useState('')
 
+    const setSearchQueryDebounced = useMemo(
+        () =>
+            debounce(setSearchQuery, 500, {
+                trailing: true,
+            }),
+        [setSearchQuery]
+    )
+
     function search(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        console.log(query)
         setSearchQuery(query)
     }
 
     function handleChange(e: React.FormEvent<HTMLInputElement>) {
         setQuery(e.currentTarget.value)
+        setSearchQueryDebounced(e.currentTarget.value)
     }
 
     return (

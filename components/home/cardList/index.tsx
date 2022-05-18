@@ -1,8 +1,7 @@
-import { Org } from '@prisma/client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { OrgWithAll } from '../../../pages'
 import Card from './card'
-import useSearchQuery from './hooks/useSearchQuery'
+import useSearch from './hooks/useSearchQuery'
 import useTagFilter from './hooks/useTagFilter'
 
 interface CardListProps {
@@ -16,10 +15,9 @@ export default function CardList({
     searchQuery,
     searchTags,
 }: CardListProps) {
-    const filteredOrgs = useSearchQuery(
-        useTagFilter(orgs, searchTags),
-        searchQuery
-    )
+    const search = useSearch(orgs)
+    const filteredOrgs = useTagFilter(search(searchQuery), searchTags)
+
     return (
         <div className="space-y-4">
             {filteredOrgs.map((org) => (
