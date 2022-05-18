@@ -41,14 +41,14 @@ export default function Home({ orgs, categories }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-    const orgs = await prismaClient.org.findMany({
+    const orgs2 = await prismaClient.org.findMany({
         include: {
             sponsors: true,
             categories: true,
         },
     })
-    const categories = await prismaClient.category.findMany()
-    const categories2 = [
+    const categories2 = await prismaClient.category.findMany()
+    const categories = [
         {
             id: 1,
             name: 'Category 1',
@@ -91,7 +91,7 @@ export async function getServerSideProps() {
         },
     ]
 
-    const orgs2 = [
+    const orgs = [
         {
             id: 1,
             type: OrgType.CLUB,

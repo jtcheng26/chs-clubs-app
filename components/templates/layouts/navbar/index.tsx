@@ -24,19 +24,17 @@ export default function NavBar({ currentPage }: NavBarProps) {
             <div className="flex flex-wrap justify-between items-center">
                 <div>
                     <Link href="/" passHref>
-                        <a>
-                            <span className="hidden md:block">
-                                <NavTitle imgSrc="/images/logo.png">
-                                    {title}
-                                </NavTitle>
-                            </span>
-                            <span className="md:hidden">
-                                <NavTitle imgSrc="/images/logo.png">
-                                    {titleShort}
-                                </NavTitle>
-                            </span>
-                        </a>
+                        <span className="hidden md:block">
+                            <NavTitle imgSrc="/images/logo.png" href="/">
+                                {title}
+                            </NavTitle>
+                        </span>
                     </Link>
+                    <div className="md:hidden">
+                        <NavTitle imgSrc="/images/logo.png" href="/">
+                            {titleShort}
+                        </NavTitle>
+                    </div>
                 </div>
 
                 <MenuButton onClick={toggleMenu} />
