@@ -23,19 +23,21 @@ export default function Home({ orgs, categories }: HomeProps) {
     const [searchTags, setSearchTags] = useState<Set<number>>(new Set([]))
     return (
         <Layout page={Pages.HOME} title="All Clubs and Organizations">
-            <div className="space-y-8">
-                <SearchBar setSearchQuery={setSearchQuery} />
-                <Filter
-                    tags={categories}
-                    setSelectedTags={setSearchTags}
-                    selectedTags={searchTags}
+            <div className="space-y-4 flex flex-col md:flex-row md:space-x-8">
+                <div className="space-y-8 md:max-w-xs md:mt-4">
+                    <SearchBar setSearchQuery={setSearchQuery} />
+                    <Filter
+                        tags={categories}
+                        setSelectedTags={setSearchTags}
+                        selectedTags={searchTags}
+                    />
+                </div>
+                <CardList
+                    orgs={orgs}
+                    searchQuery={searchQuery}
+                    searchTags={searchTags}
                 />
             </div>
-            <CardList
-                orgs={orgs}
-                searchQuery={searchQuery}
-                searchTags={searchTags}
-            />
         </Layout>
     )
 }
