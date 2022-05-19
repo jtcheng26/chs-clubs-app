@@ -32,11 +32,13 @@ export default function Home({ orgs, categories }: HomeProps) {
                         selectedTags={searchTags}
                     />
                 </div>
-                <CardList
-                    orgs={orgs}
-                    searchQuery={searchQuery}
-                    searchTags={searchTags}
-                />
+                <div className="w-full">
+                    <CardList
+                        orgs={orgs}
+                        searchQuery={searchQuery}
+                        searchTags={searchTags}
+                    />
+                </div>
             </div>
         </Layout>
     )
