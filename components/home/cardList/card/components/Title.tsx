@@ -1,6 +1,16 @@
 import React from 'react'
-import { ChildrenProps } from '../../../../templates/props'
 
-export default function Title({ children }: ChildrenProps) {
-    return <div className="text-lg text-black font-bold">{children}</div>
+interface TitleProps {
+    children?: React.ReactNode
+    big?: boolean
+}
+
+export default function Title({ children, big }: TitleProps) {
+    return (
+        <div
+            className={'text-black font-bold ' + (big ? 'text-3xl' : 'text-lg')}
+        >
+            {children}
+        </div>
+    )
 }

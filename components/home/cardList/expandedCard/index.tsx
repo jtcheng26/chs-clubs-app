@@ -34,7 +34,7 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
                     />
 
                     <div className="flex-row flex items-center pl-4 w-full overflow-hidden">
-                        <Title>{org.name}</Title>
+                        <Title big>{org.name}</Title>
                     </div>
                 </div>
                 <div className="space-y-1">
