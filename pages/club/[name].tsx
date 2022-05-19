@@ -14,7 +14,7 @@ interface ClubPageProps {
 export default function ClubPage({ org }: ClubPageProps) {
     return org ? (
         <Layout page={Pages.HOME} title={org.name}>
-            {/* <ExpandedCard org={org} /> */}
+            { <ExpandedCard org={org} /> }
         </Layout>
     ) : (
         <PageNotFound />
@@ -34,3 +34,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
     }
 }
+

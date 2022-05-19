@@ -13,6 +13,7 @@ import LocationMarkerSolid from '@heroicons/react/solid/LocationMarkerIcon'
 import UsersSolid from '@heroicons/react/solid/UsersIcon'
 import LinkSolid from '@heroicons/react/solid/LinkIcon'
 import MailSolid from '@heroicons/react/solid/MailIcon'
+import Link from 'next/link'
 
 interface ExpandedCardProps {
     org: OrgWithAll
@@ -20,9 +21,9 @@ interface ExpandedCardProps {
 
 export default function ExpandedCard({ org }: ExpandedCardProps) {
     return (
-        <div className="expandedCard display-flex justify-start flex-column">
-            <div className="titleSection display-flex justify-start flex-row">
-                <div className="logoAndName">
+        <div className="flex h-screen m-3 bg-white rounded-lg flex-col">
+            <div className="flex h-1/6 w-full">
+                <div className="md:block w-1/3 w-26 border-white">
                     <Image
                         src={org.picture}
                         width={80}
@@ -30,19 +31,31 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
                         objectFit="contain"
                         alt={org.name + ' logo'}
                     />
-                    <Title align-items-center>{org.name}</Title>
+                </div>
+                <div className="flex-col w-full overflow-hidden">
+                    <div className="md:block h-3/4 rounded">
+                        <Title>{org.name}</Title>
+                    </div>
                 </div>
             </div>
-            <div className="genInfo flex-col">
+            <div className="flex h-1/10 w-full ">
                 <IconLabel label={org.meetFreq}>
-                    <CalendarSolid width={30} className="text-gray-600" />
-                </IconLabel>
-                <IconLabel label={org.meetLocation}>
-                    <LocationMarkerSolid width={30} className="text-gray-600" />
+                    <CalendarSolid
+                        width={20}
+                        className="text-gray-600"
+                    />
                 </IconLabel>
             </div>
-            <div className="tags display-flex justify-start flex flex-row space-x-2">
-                {org.categories.map((category) => (
+            <div className="flex h-1/10 w-full">
+                <IconLabel label={org.meetLocation}>
+                    <LocationMarkerSolid
+                        width={20}
+                        className="text-gray-600"
+                    />
+                </IconLabel>
+            </div>
+            <div className="flex flex-row space-x-2">
+                {org.categories?.map((category) => (
                     <Category
                         key={category.id}
                         name={category.name}
@@ -54,36 +67,63 @@ export default function ExpandedCard({ org }: ExpandedCardProps) {
                     />
                 ))}
             </div>
-            <div className="descriptionSection flex-col">
-                <div>Description</div>
-                <Description>{org.hook}</Description>
-            </div>
-            <div className="importantLinksSection flex-col">
-                <LinkSolid width={20} className="text-gray-600" />
-                {org.links.map((link) => (
-                    <ImportantLink href={link} key={link}>
-                        {link}
-                    </ImportantLink>
-                ))}
-            </div>
-            <div className="contactSection flex-col">
-                <MailSolid width={20} className="text-gray-600" />
+            <div className="flex h-1/3 w-full flex-col">
+                <div className="font-bold text-lg">
+                    Description
+                </div>
                 <div>
-                    {org.sponsors.map((sponsor) => (
-                        <>
-                            <ContactLabel>{sponsor.name}</ContactLabel>
-                            <Contact email={sponsor.email}>
-                                {sponsor.email}
-                            </Contact>
-                        </>
-                    ))}
+                    <Description>{org.hook}</Description>
                 </div>
             </div>
-            <div className="numMembers">
-                <IconLabel label={org.members + ''}>
-                    <UsersSolid width={20} className="text-gray-600" />
-                </IconLabel>
+            <div className="flex h-1/6 w-full flex-col">
+                <div className="flex flex-row font-bold text-lg">
+                    <LinkSolid
+                        width={20}
+                        className="text-gray-600"
+                    />
+                    Important Links
+                </div>
+                {org.links.map((links) => (
+                    <ImportantLink
+                        href={links}
+                        children={links}
+                    />
+                ))}
             </div>
+            <div className="flex h-1/10 w-full flex-row font-bold text-lg">
+                <UsersSolid
+                    width={20}
+                    className="text-gray-600"
+                />
+                Members: {org.members}
+            </div>
+            <div className="flex h-1/10 flex-col font-bold text-lg">
+                <div className="flex flex-row font-bold text-lg">
+                    <ContactLabel>
+                        <MailSolid
+                            width={20}
+                            className="text-gray-600"
+                        />
+                    </ContactLabel>
+                    Contact
+                </div>
+                <div className="flex flex-col font-light">
+                    <Contact
+                        href={org.email}
+                        children={org.email}
+                    />
+
+                    {/*{org.sponsors.map((links) => (
+                        <Contact
+                            href={links}
+                            children={links}
+                        />
+                    ))}*/}
+                </div>
+            </div>
+
         </div>
+        
     )
+    
 }
