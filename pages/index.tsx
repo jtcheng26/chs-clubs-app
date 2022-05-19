@@ -9,7 +9,7 @@ import Layout from '../components/templates/layouts/layout'
 import prismaClient from '../lib/prisma'
 
 const userWithRelations = Prisma.validator<Prisma.OrgArgs>()({
-    include: { categories: true, sponsors: true },
+    include: { categories: true, sponsors: true, links: true },
 })
 export type OrgWithAll = Prisma.OrgGetPayload<typeof userWithRelations>
 
@@ -45,6 +45,7 @@ export async function getServerSideProps() {
         include: {
             sponsors: true,
             categories: true,
+            links: true,
         },
     })
     const categories2 = await prismaClient.category.findMany()
@@ -91,7 +92,7 @@ export async function getServerSideProps() {
         },
     ]
 
-    const orgs = [
+    const orgs: OrgWithAll[] = [
         {
             id: 1,
             type: OrgType.CLUB,
@@ -99,10 +100,18 @@ export async function getServerSideProps() {
             name: 'Org name',
             hook: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             description: 'Org description',
+            identifier: 'club-1',
             meetDay: 'Monday',
             meetFreq: 'Weekly',
             meetLocation: 'Virtual',
-            links: ['/', '/help'],
+            links: [
+                {
+                    id: 2,
+                    href: '/',
+                    name: 'help',
+                    orgId: 1,
+                },
+            ],
             email: 'abcdefg@gmail.com',
             sponsors: [
                 {
@@ -110,7 +119,6 @@ export async function getServerSideProps() {
                     role: Role.TEACHER,
                     name: 'Teacher #1',
                     email: 'tecaher@gmail.com',
-                    orgs: [],
                 },
             ],
             members: 10,
@@ -137,7 +145,15 @@ export async function getServerSideProps() {
             meetDay: 'Monday',
             meetFreq: 'Weekly',
             meetLocation: 'Room 604',
-            links: ['/', '/help'],
+            identifier: 'club-2',
+            links: [
+                {
+                    id: 1,
+                    href: '/',
+                    name: 'help',
+                    orgId: 5,
+                },
+            ],
             email: 'abcdefg@gmail.com',
             sponsors: [
                 {
@@ -145,7 +161,6 @@ export async function getServerSideProps() {
                     role: Role.TEACHER,
                     name: 'Teacher #1',
                     email: 'tecaher@gmail.com',
-                    orgs: [],
                 },
             ],
             members: 10,

@@ -15,6 +15,7 @@ interface CardProps {
 }
 
 export default function Card({ org }: CardProps) {
+    console.log(org)
     const link = '/club/' + org.identifier
     return (
         <Link href={link} passHref>

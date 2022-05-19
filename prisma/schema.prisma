@@ -13,7 +13,7 @@ datasource db {
 // A club, honor, society, organization, etc. to be displayed
 model Org {
   id           Int        @id @default(autoincrement())
-  identifier   String    @unique // url-safe unique identifier (a-z, 0-9, -) only
+  identifier   String     @unique // url-safe unique identifier (a-z, 0-9, -) only
   type         OrgType
   picture      String // link to image
   name         String
@@ -22,11 +22,19 @@ model Org {
   meetDay      String // tuesdays, first/second monday, etc.
   meetFreq     String // weekly, biweekly, monthly, bimonthly
   meetLocation String // room 604, media center, gym
-  links        String[]
+  links        Link[]
   email        String // club email
   sponsors     Person[] // includes teacher sponsor and student leaders
   members      Int // estimate
   categories   Category[]
+}
+
+model Link {
+  id    Int    @id @default(autoincrement())
+  href  String
+  name  String
+  Org   Org?   @relation(fields: [orgId], references: [id])
+  orgId Int?
 }
 
 model Person {

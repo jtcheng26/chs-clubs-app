@@ -13,8 +13,8 @@ interface ClubPageProps {
 
 export default function ClubPage({ org }: ClubPageProps) {
     return org ? (
-        <Layout page={Pages.HOME} title={org.name}>
-            { <ExpandedCard org={org} /> }
+        <Layout page={Pages.HOME} title="">
+            {<ExpandedCard org={org} />}
         </Layout>
     ) : (
         <PageNotFound />
@@ -27,6 +27,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         where: {
             identifier: name as string,
         },
+        include: {
+            sponsors: true,
+            categories: true,
+            links: true,
+        },
     })
     return {
         props: {
@@ -34,4 +39,3 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
     }
 }
-
