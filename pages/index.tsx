@@ -9,7 +9,7 @@ import Layout from '../components/templates/layouts/layout'
 import prismaClient from '../lib/prisma'
 
 const userWithRelations = Prisma.validator<Prisma.OrgArgs>()({
-    include: { categories: true, sponsors: true, links: true },
+    include: { categories: true, sponsors: true },
 })
 export type OrgWithAll = Prisma.OrgGetPayload<typeof userWithRelations>
 
@@ -49,7 +49,6 @@ export async function getServerSideProps() {
         include: {
             sponsors: true,
             categories: true,
-            links: true,
         },
     })
     const categories2 = await prismaClient.category.findMany()
