@@ -1,6 +1,10 @@
 import React from 'react'
 
-export default function MenuButton({ onClick }) {
+interface MenuButtonProps {
+    onClick: () => void
+}
+
+export default function MenuButton({ onClick }: MenuButtonProps) {
     const srText = 'Open main menu'
     return (
         <button
