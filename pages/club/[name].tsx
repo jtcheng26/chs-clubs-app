@@ -43,6 +43,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         include: {
             sponsors: true,
             categories: true,
+            links: true,
         },
     })
     return {
