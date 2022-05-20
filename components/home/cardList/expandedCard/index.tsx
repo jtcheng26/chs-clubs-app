@@ -13,7 +13,6 @@ import LocationMarkerSolid from '@heroicons/react/solid/LocationMarkerIcon'
 import UsersSolid from '@heroicons/react/solid/UsersIcon'
 import LinkSolid from '@heroicons/react/solid/LinkIcon'
 import MailSolid from '@heroicons/react/solid/MailIcon'
-import Link from 'next/link'
 
 interface ExpandedCardProps {
     org: OrgWithAll

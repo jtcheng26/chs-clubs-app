@@ -9,7 +9,7 @@ import Layout from '../components/templates/layouts/layout'
 import prismaClient from '../lib/prisma'
 
 const userWithRelations = Prisma.validator<Prisma.OrgArgs>()({
-    include: { categories: true, sponsors: true },
+    include: { categories: true, sponsors: true, links: true },
 })
 export type OrgWithAll = Prisma.OrgGetPayload<typeof userWithRelations>
 
@@ -45,14 +45,15 @@ export default function Home({ orgs, categories }: HomeProps) {
 }
 
 export async function getServerSideProps() {
-    const orgs2 = await prismaClient.org.findMany({
+    const orgs = await prismaClient.org.findMany({
         include: {
             sponsors: true,
             categories: true,
+            links: true,
         },
     })
-    const categories2 = await prismaClient.category.findMany()
-    const categories = [
+    const categories = await prismaClient.category.findMany()
+    const categories2 = [
         {
             id: 1,
             name: 'Category 1',
@@ -95,7 +96,7 @@ export async function getServerSideProps() {
         },
     ]
 
-    const orgs: OrgWithAll[] = [
+    const orgs2: OrgWithAll[] = [
         {
             id: 1,
             type: OrgType.CLUB,
