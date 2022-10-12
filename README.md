@@ -1,3 +1,17 @@
+# Centennial High School Clubs and Organizations
+Website built for ADS legacy project.
+
+[Check it out!](http://chs-clubs.vercel.app/)
+
+## View all clubs
+![image](demo/landing.png)
+
+## Club page
+![image](demo/page.png)
+
+## Mobile view
+![image](demo/mobile.png)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
